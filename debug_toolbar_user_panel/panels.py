@@ -51,10 +51,17 @@ File a bug
   https://github.com/playfire/django-debug-toolbar-user-panel/issues
 """
 
+from django.conf import settings
+from django.http import HttpResponseForbidden
+from django.conf.urls import patterns, url
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from django.contrib.auth.models import User
+
 from debug_toolbar.panels import DebugPanel
+
+from .forms import UserForm
 
 class UserPanel(DebugPanel):
     """
@@ -84,12 +91,26 @@ class UserPanel(DebugPanel):
 
     @property
     def content(self):
-        context = self.context.copy()
-        context.update({
-            'request': self.request,
-        })
+        if not getattr(settings, 'DEBUG_TOOLBAR_USER_DEBUG', settings.DEBUG):
+            return HttpResponseForbidden()
 
-        return render_to_string('debug_toolbar_user_panel/panel.html', context)
+        current = []
+
+        if self.request.user.is_authenticated():
+            for field in User._meta.fields:
+                if field.name == 'password':
+                    continue
+                current.append(
+                    (field.attname, getattr(self.request.user, field.attname))
+                )
+
+        return render_to_string(self.template, {
+            'user': self.request.user,
+            'form': UserForm(),
+            'next': self.request.GET.get('next'),
+            'users': User.objects.order_by('-last_login')[:10],
+            'current': current,
+        })
 
     def process_response(self, request, response):
         self.request = request
