@@ -64,18 +64,25 @@ class UserPanel(DebugPanel):
     name = 'User'
     has_content = True
 
+    @property
     def nav_title(self):
         return _('User')
 
+    @property
     def url(self):
         return ''
 
+    @property
     def title(self):
         return _('User')
 
+    @property
     def nav_subtitle(self):
         return self.request.user.is_authenticated() and self.request.user
 
+    template = 'debug_toolbar_user_panel/panel.html'
+
+    @property
     def content(self):
         context = self.context.copy()
         context.update({
