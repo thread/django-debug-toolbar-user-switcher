@@ -57,7 +57,7 @@ from django.conf.urls import url
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from debug_toolbar.panels import DebugPanel
 
@@ -98,7 +98,7 @@ class UserPanel(DebugPanel):
         current = []
 
         if self.request.user.is_authenticated():
-            for field in User._meta.fields:
+            for field in get_user_model()._meta.fields:
                 if field.name == 'password':
                     continue
                 current.append(
@@ -109,7 +109,7 @@ class UserPanel(DebugPanel):
             'user': self.request.user,
             'form': UserForm(),
             'next': self.request.GET.get('next'),
-            'users': User.objects.order_by('-last_login')[:10],
+            'users': get_user_model().objects.order_by('-last_login')[:10],
             'current': current,
         })
 
