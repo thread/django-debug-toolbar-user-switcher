@@ -1,7 +1,8 @@
 django-debug-toolbar-user-panel
 ===============================
 
-Documentation: http://code.playfire.com/django-debug-toolbar-user-panel/
+Documentation: https://chris-lamb.co.uk/projects/django-debug-toolbar-user-panel
 
-.. figure::  http://code.playfire.com/django-debug-toolbar-user-panel/_images/screenshot.png
-   :align:   center
+PyPI: https://pypi.python.org/pypi/django-debug-toolbar-user-panel
+
+Install with ``pip install django-debug-toolbar-user-panel``
