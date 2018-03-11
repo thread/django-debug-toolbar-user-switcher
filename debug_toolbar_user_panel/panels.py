@@ -51,6 +51,7 @@ File a bug
   https://github.com/playfire/django-debug-toolbar-user-panel/issues
 """
 
+from django import VERSION as DJANGO_VERSION
 from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.conf.urls import url
@@ -86,7 +87,7 @@ class UserPanel(DebugPanel):
 
     @property
     def nav_subtitle(self):
-        return self.request.user.is_authenticated() and self.request.user
+        return self.is_authenticated and self.request.user
 
     template = 'debug_toolbar_user_panel/panel.html'
 
@@ -97,7 +98,7 @@ class UserPanel(DebugPanel):
 
         current = []
 
-        if self.request.user.is_authenticated():
+        if self.is_authenticated:
             for field in get_user_model()._meta.fields:
                 if field.name == 'password':
                     continue
@@ -115,6 +116,10 @@ class UserPanel(DebugPanel):
 
     def process_response(self, request, response):
         self.request = request
+        if DJANGO_VERSION[0] >= 2 or (DJANGO_VERSION[0] == 1 and DJANGO_VERSION[1] >= 10):
+            self.is_authenticated = self.request.user.is_authenticated
+        else:
+            self.is_authenticated = self.request.user.is_authenticated()
 
     @classmethod
     def get_urls(cls):
