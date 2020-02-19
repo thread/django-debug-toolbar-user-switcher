@@ -1,8 +1,6 @@
-django-debug-toolbar-user-panel
-===============================
+django-debug-toolbar-user-switcher
+==================================
 
-Documentation: https://chris-lamb.co.uk/projects/django-debug-toolbar-user-panel
+Forked from https://chris-lamb.co.uk/projects/django-debug-toolbar-user-panel.
 
-PyPI: https://pypi.python.org/pypi/django-debug-toolbar-user-panel
-
-Install with ``pip install django-debug-toolbar-user-panel``
+Updated for Debug Toolbar 2.x.
