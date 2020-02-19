@@ -61,10 +61,6 @@ class UserPanel(Panel):
     has_content = True
     template = "debug_toolbar_user_panel/panel.html"
 
-    def __init__(self, get_response):
-        self.get_response = get_response
-        super().__init__(get_response)
-
     @property
     def nav_title(self):
         return _("User")
