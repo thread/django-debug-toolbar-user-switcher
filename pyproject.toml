@@ -5,6 +5,9 @@ description = "Panel for the Django Debug toolbar to quickly switch between user
 authors = ["Thread Engineering <tech@thread.com>"]
 license = "BSD-3-Clause"
 include = ["debug_toolbar_user_switcher/templates/debug_toolbar_user_switcher/*"]
+packages = [
+    { include = "debug_toolbar_user_switcher" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.5"
