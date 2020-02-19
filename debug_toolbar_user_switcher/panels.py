@@ -59,7 +59,7 @@ class UserPanel(Panel):
 
     name = "User"
     has_content = True
-    template = "debug_toolbar_user_panel/panel.html"
+    template = "debug_toolbar_user_switcher/panel.html"
 
     @property
     def nav_title(self):
