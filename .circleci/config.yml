@@ -20,7 +20,7 @@ jobs:
             poetry install
       - save_cache:
           key: deps-{{ checksum "poetry.lock" }}
-          paths: 
+          paths:
             - /home/circleci/.cache/pypoetry/virtualenvs
 
       - run:
@@ -49,7 +49,7 @@ workflows:
   build:
     jobs:
       - build
-  
+
   build-deploy:
     jobs:
       - build:
