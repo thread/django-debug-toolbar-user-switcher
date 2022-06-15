@@ -11,6 +11,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.5"
+Django = "<4"
+django-debug-toolbar = "<4"
 
 [tool.poetry.dev-dependencies]
 
