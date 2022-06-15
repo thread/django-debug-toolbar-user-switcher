@@ -10,9 +10,9 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.5"
-Django = "<4"
-django-debug-toolbar = "<4"
+python = "^3.6"
+django = ">=2.2,<5"
+django-debug-toolbar = ">=2,<4"
 
 [tool.poetry.dev-dependencies]
 
