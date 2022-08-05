@@ -32,7 +32,9 @@ def login(request, **kwargs):
     user.backend = settings.AUTHENTICATION_BACKENDS[0]
     auth.login(request, user)
 
-    return HttpResponseRedirect(request.POST.get("next", "/"))
+    return HttpResponseRedirect(
+        request.POST.get("next", request.META.get("HTTP_REFERER", "/")),
+    )
 
 
 @csrf_exempt
@@ -40,4 +42,6 @@ def login(request, **kwargs):
 @debug_required
 def logout(request):
     django_logout(request)
-    return HttpResponseRedirect(request.POST.get("next", "/"))
+    return HttpResponseRedirect(
+        request.POST.get("next", request.META.get("HTTP_REFERER", "/")),
+    )
