@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-debug-toolbar-user-switcher"
-version = "2.2.0"
+version = "2.3.0"
 description = "Panel for the Django Debug toolbar to quickly switch between users."
 authors = ["Thread Engineering <tech@thread.com>"]
 license = "BSD-3-Clause"
@@ -12,9 +12,9 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-django = ">=2.2,<5"
-django-debug-toolbar = ">=2,<4"
+python = "^3.8"
+django = ">=2.2,<6"
+django-debug-toolbar = ">=2,<5"
 
 [tool.poetry.dev-dependencies]
 
